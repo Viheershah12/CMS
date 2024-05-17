@@ -166,9 +166,9 @@
                     by <a href="index.php"><?php echo $post_author ?></a>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
-                <hr>
-                <img class="img-responsive" src="/cms/images/<?php echo $post_image;?>" alt="">
-                <hr>
+                <!-- <hr>
+                <img class="img-responsive" src="/images/<?php //echo $post_image;?>" alt="">
+                <hr> -->
                 <p><?php echo $post_content ?></p>
 
         <hr>
@@ -210,7 +210,7 @@
               <?php  } else { ?>
 
                     <div class="row">
-                        <p class="pull-right login-to-post">You need to <a href="/cms/login.php">Login</a> to like </p>
+                        <p class="pull-right login-to-post">You need to <a href="/login.php">Login</a> to like </p>
                     </div>
 
 
@@ -222,7 +222,7 @@
 
 
                 <div class="row">
-                    <p class="pull-right likes">Like: <?php getPostlikes($the_post_id); ?></p>
+                    <p class="pull-right likes">Likes: <?php getPostlikes($the_post_id); ?></p>
                 </div>
 
                  <div class="clearfix"></div>
@@ -257,14 +257,14 @@
         $comment_author = $_POST['comment_author'];
         $comment_email = $_POST['comment_email'];
         $comment_content = $_POST['comment_content'];
+        $user_id = loggedInUserId();
+
+        if (!empty($comment_author) && !empty($comment_content)) {
 
 
-        if (!empty($comment_author) && !empty($comment_email) && !empty($comment_content)) {
+            $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status,comment_date, user_id)";
 
-
-            $query = "INSERT INTO comments (comment_post_id, comment_author, comment_email, comment_content, comment_status,comment_date)";
-
-            $query .= "VALUES ($the_post_id ,'{$comment_author}', '{$comment_email}', '{$comment_content }', 'unapproved',now())";
+            $query .= "VALUES ($the_post_id ,'{$comment_author}', '{$comment_email}', '{$comment_content }', 'unapproved',now(), '{$user_id}')";
 
             $create_comment_query = mysqli_query($connection, $query);
 
@@ -275,6 +275,9 @@
             }
 
 
+        }
+        else{
+            echo 'Ensure all comment data is entered';
         }
 
 
@@ -340,9 +343,9 @@
                            <!-- Comment -->
                 <div class="media">
                      
-                    <a class="pull-left" href="#">
+                    <!-- <a class="pull-left" href="#">
                         <img class="media-object" src="http://placehold.it/64x64" alt="">
-                    </a>
+                    </a> -->
                     <div class="media-body">
                         <h4 class="media-heading"><?php echo $comment_author;   ?>
                             <small><?php echo $comment_date;   ?></small>
@@ -397,7 +400,7 @@
 
                 $('.like').click(function(){
                     $.ajax({
-                        url: "/cms/post.php?p_id=<?php echo $the_post_id; ?>",
+                        url: "/post.php?p_id=<?php echo $the_post_id; ?>",
                         type: 'post',
                         data: {
                             'liked': 1,
@@ -413,7 +416,7 @@
 
                     $.ajax({
 
-                        url: "/cms/post.php?p_id=<?php echo $the_post_id; ?>",
+                        url: "/post.php?p_id=<?php echo $the_post_id; ?>",
                         type: 'post',
                         data: {
                             'unliked': 1,

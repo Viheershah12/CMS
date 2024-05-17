@@ -4,7 +4,7 @@
 
 <?php
 
-		checkIfUserIsLoggedInAndRedirect('/cms/admin');
+		checkIfUserIsLoggedInAndRedirect('/admin');
 
 
 		if(ifItIsMethod('post')){
@@ -17,7 +17,7 @@
 			}else {
 
 
-				redirect('/cms/login.php');
+				redirect('/login.php');
 			}
 
 		}

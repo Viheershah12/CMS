@@ -40,6 +40,13 @@ function get_user_name(){
     return isset($_SESSION['username']) ? $_SESSION['username'] : null;
 }
 
+function get_user_role(){
+    $result = query("SELECT user_role FROM users WHERE user_id=".$_SESSION['user_id']."");
+    $row = fetchRecords($result);
+
+    return $row['user_role'];
+}
+
 //===== END GENERAL HELPERS =====//
 
 
@@ -76,7 +83,7 @@ function get_all_user_posts(){
 function get_all_posts_user_comments(){
     return query("SELECT * FROM posts
     INNER JOIN comments ON posts.post_id = comments.comment_post_id
-    WHERE user_id=".loggedInUserId()."");
+    WHERE posts.user_id=".loggedInUserId()."");
 
 }
 
@@ -96,14 +103,14 @@ function get_all_user_draft_posts(){
 function get_all_user_approved_posts_comments(){
     return query("SELECT * FROM posts
     INNER JOIN comments ON posts.post_id = comments.comment_post_id
-    WHERE user_id=".loggedInUserId()." AND comment_status='approved'");
+    WHERE comments.user_id=".loggedInUserId()." AND comments.comment_status='approved'");
 }
 
 
 function get_all_user_unapproved_posts_comments(){
     return query("SELECT * FROM posts
     INNER JOIN comments ON posts.post_id = comments.comment_post_id
-    WHERE user_id=".loggedInUserId()." AND comment_status='unapproved'");
+    WHERE comments.user_id=".loggedInUserId()." AND comments.comment_status='unapproved'");
 }
 
 
@@ -292,11 +299,10 @@ function insert_categories(){
 
 
 
+    $userId = loggedInUserId();
 
-    $stmt = mysqli_prepare($connection, "INSERT INTO categories(cat_title) VALUES(?) ");
-
-    mysqli_stmt_bind_param($stmt, 's', $cat_title);
-
+    $stmt = mysqli_prepare($connection, "INSERT INTO categories(cat_title, user_id) VALUES(?, ?) ");
+    mysqli_stmt_bind_param($stmt, 'si', $cat_title, $userId);
     mysqli_stmt_execute($stmt);
 
 
@@ -496,7 +502,7 @@ function register_user($username, $email, $password){
 
 
 
-             redirect("/cms/admin");
+             redirect("/admin");
 
 
          } else {

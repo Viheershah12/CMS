@@ -34,12 +34,13 @@
             if(isset($_POST['update_category'])) {
 
                 $the_cat_title = escape($_POST['cat_title']);
+                $userId = loggedInUserId();
 
-                $stmt = mysqli_prepare($connection, "UPDATE categories SET cat_title = ? WHERE cat_id = ? ");
+                $stmt = mysqli_prepare($connection, "UPDATE categories SET cat_title = ?, user_id = ? WHERE cat_id = ? ");
 
-                 mysqli_stmt_bind_param($stmt, 'si', $the_cat_title, $cat_id);
+                mysqli_stmt_bind_param($stmt, 'sii', $the_cat_title, $userId, $cat_id);
 
-                 mysqli_stmt_execute($stmt);
+                mysqli_stmt_execute($stmt);
 
 
                          if(!$stmt){

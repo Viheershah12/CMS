@@ -28,7 +28,6 @@
     if(isset($_POST['update_post'])) {
         
         
-        $post_user           =  escape($_POST['post_user']);
         $post_title          =  escape($_POST['post_title']);
         $post_category_id    =  escape($_POST['post_category']);
         $post_status         =  escape($_POST['post_status']);
@@ -59,7 +58,7 @@
           $query .="post_title  = '{$post_title}', ";
           $query .="post_category_id = '{$post_category_id}', ";
           $query .="post_date   =  now(), ";
-          $query .="post_user = '{$post_user}', ";
+          // $query .="post_user = '{$post_user}', ";
           $query .="post_status = '{$post_status}', ";
           $query .="post_tags   = '{$post_tags}', ";
           $query .="post_content= '{$post_content}', ";
@@ -135,43 +134,44 @@
 
       </div>
 
-        <div class="form-group">
+        <!-- <div class="form-group">
        <label for="users">Users</label>
        <select name="post_user" id="">
 
 
-<?php echo "<option value='{$post_user}'>{$post_user}</option>"; ?>
+<?php 
+      //echo "<option value='{$post_user}'>{$post_user}</option>"; ?>
            
 <?php
 
-        $users_query = "SELECT * FROM users";
-        $select_users = mysqli_query($connection,$users_query);
+        // $users_query = "SELECT * FROM users";
+        // $select_users = mysqli_query($connection,$users_query);
         
-        confirmQuery($select_users);
+        // confirmQuery($select_users);
 
 
-        while($row = mysqli_fetch_assoc($select_users)) {
-        $user_id = $row['user_id'];
-        $username = $row['username'];
+        // while($row = mysqli_fetch_assoc($select_users)) {
+        // $user_id = $row['user_id'];
+        // $username = $row['username'];
             
             
-            echo "<option value='{$username}'>{$username}</option>";
+        //     echo "<option value='{$username}'>{$username}</option>";
          
             
-        }
+        // }
 
 ?>
            
         
        </select>
       
-      </div>
+      </div> -->
 
 
 
     <!--   <div class="form-group">
          <label for="title">Post Author</label>
-          <input value="<?php// echo $post_user; ?>" type="text" class="form-control" name="post_user">
+          <input value="<?php // echo $post_user; ?>" type="text" class="form-control" name="post_user">
       </div> -->
       
        <div class="form-group">
@@ -208,11 +208,11 @@
 
       
       
-    <div class="form-group">
+    <!-- <div class="form-group">
 
        <img width="100" src="../images/<?php echo $post_image; ?>" alt="">
        <input  type="file" name="image">
-      </div>
+      </div> -->
 
       <div class="form-group">
          <label for="post_tags">Post Tags</label>

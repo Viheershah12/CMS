@@ -55,19 +55,25 @@ if(isset($_POST['checkBoxArray'])) {
 
 <form action="" method='post'>
     <table class="table table-bordered table-hover">
-        <div id="bulkOptionContainer" class="col-xs-4">
-            <select class="form-control" name="bulk_options" id="">
-                <option value="">Select Options</option>
-                <option value="published">Publish</option>
-                <option value="draft">Draft</option>
-                <option value="delete">Delete</option>
-                <option value="clone">Clone</option>
-            </select>
+        <div class="row">
+            <div id="bulkOptionContainer" class="col-xs-4">
+                <select class="form-control" name="bulk_options" id="">
+                    <option value="">Select Options</option>
+                    <option value="published">Publish</option>
+                    <option value="draft">Draft</option>
+                    <option value="delete">Delete</option>
+                    <option value="clone">Clone</option>
+                </select>
+            </div>
+            
+            <div class="col-xs-4">
+                <input type="submit" name="submit" class="btn btn-success" value="Apply">
+                <a class="btn btn-primary" href="posts.php?source=add_post">Add New</a>
+            </div>
         </div>
-        <div class="col-xs-4">
-            <input type="submit" name="submit" class="btn btn-success" value="Apply">
-            <a class="btn btn-primary" href="posts.php?source=add_post">Add New</a>
-        </div>
+
+        <br>
+
         <thead>
         <tr>
             <th><input id="selectAllBoxes" type="checkbox"></th>
@@ -126,14 +132,14 @@ if(isset($_POST['checkBoxArray'])) {
                 echo "<td>$cat_title</td>";
             }
             echo "<td>$post_status</td>";
-            echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
+            // echo "<td><img width='100' src='../images/$post_image' alt='image'></td>";
             echo "<td>$post_tags</td>";
 
 
             $query = "SELECT * FROM comments WHERE comment_post_id = $post_id";
             $send_comment_query = mysqli_query($connection, $query);
             $row = mysqli_fetch_array($send_comment_query);
-            $comment_id = $row['comment_id'];
+            //$comment_id = $row['comment_id'] == null ? 0 : $row['comment_id'];
             $count_comments = mysqli_num_rows($send_comment_query);
 
             echo "<td><a href='post_comments.php?id=$post_id'>$count_comments</a></td>";

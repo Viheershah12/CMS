@@ -20,8 +20,9 @@ $unapproved_comment_count = count_records(get_all_user_unapproved_posts_comments
                 <div class="row">
                     <div class="col-lg-12">
                         <h1 class="page-header">
-                            <small>Role: Admin</small>
-                            Welcome to admin <?php echo strtoupper(get_user_name());?>
+                            <small>Role: <?php echo get_user_role() ?></small> <br>
+                            Welcome to Administration
+                            <!-- <?php echo strtoupper(get_user_name());?> -->
                         </h1>
                     </div>
                 </div>
@@ -40,7 +41,7 @@ $unapproved_comment_count = count_records(get_all_user_unapproved_posts_comments
                             </div>
                         </div>
                     </div>
-                    <a href="posts.php">
+                    <a href="/admin/posts.php">
                         <div class="panel-footer">
                             <span class="pull-left">View Details</span>
                             <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -62,7 +63,7 @@ $unapproved_comment_count = count_records(get_all_user_unapproved_posts_comments
                         </div>
                     </div>
                 </div>
-                <a href="comments.php">
+                <a href="/admin/comments.php">
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -84,7 +85,7 @@ $unapproved_comment_count = count_records(get_all_user_unapproved_posts_comments
                         </div>
                     </div>
                 </div>
-                <a href="categories.php">
+                <a href="/admin/categories.php">
                     <div class="panel-footer">
                         <span class="pull-left">View Details</span>
                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>

@@ -10,7 +10,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/cms">CMS Front</a>
+                <a class="navbar-brand" href="/">CMS Front</a>
             </div>
             
             
@@ -18,61 +18,58 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav">
                   
-                  <?php 
+                    <?php 
 
-    $query = "SELECT * FROM categories LIMIT 3";
-    $select_all_categories_query = mysqli_query($connection,$query);
+                        $query = "SELECT * FROM categories LIMIT 3";
+                        $select_all_categories_query = mysqli_query($connection,$query);
 
-    while($row = mysqli_fetch_assoc($select_all_categories_query)) {
-       $cat_title = $row['cat_title'];
-       $cat_id = $row['cat_id'];
-        
-        echo "<li><a href='/cms/category/{$cat_id}'>{$cat_title}</a></li>";
-    }
-                    
-    ?>
+                        while($row = mysqli_fetch_assoc($select_all_categories_query)) {
+                        $cat_title = $row['cat_title'];
+                        $cat_id = $row['cat_id'];
+                            
+                            echo "<li><a href='/category.php?category={$cat_id}'>{$cat_title}</a></li>";
+                        }
+                                    
+                    ?>
 
                     <?php if(isLoggedIn()): ?>
 
 
-                        <li>
-                            <a href="/cms/admin">Admin</a>
-                        </li>
+                    <li>
+                        <a href="/admin">Administration</a>
+                    </li>
 
-                        <li>
-                            <a href="/cms/includes/logout.php">Logout</a>
-                        </li>
+                    <li>
+                        <a href="/includes/logout.php">Logout</a>
+                    </li>
 
 
                     <?php else: ?>
 
-
                         <li>
-                            <a href="/cms/login.php">Login</a>
+                            <a href="/login.php">Login</a>
                         </li>
 
+                        <li>
+                            <a href="/registration.php">Registration</a>
+                        </li>
 
                     <?php endif; ?>
 
-
-
-
-                                 
-                     <li>
-                        <a href="/cms/registration">Registration</a>
-                    </li>
+                     
                                   
                     
     <?php 
 
     if(isset($_SESSION['user_role'])) {
     
-        if(isset($_GET['p_id'])) {
-            
-          $the_post_id = $_GET['p_id'];
+        if(isset($_GET['p_id']) && isset($_GET['user_id'])) {
+            if($_GET['user_id'] == loggedInUserId()){
+
+                $the_post_id = $_GET['p_id'];
         
-        echo "<li><a href='/cms/admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
-        
+                echo "<li><a href='/admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
+            }
         }
     
     
@@ -81,10 +78,10 @@
     
     ?>
 
-           
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
+        
+            </ul>
         </div>
-        <!-- /.container -->
-    </nav>
+        <!-- /.navbar-collapse -->
+    </div>
+    <!-- /.container -->
+</nav>

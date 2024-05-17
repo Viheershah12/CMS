@@ -18,7 +18,7 @@
                
                <?php
 
-
+$post_user_id = isLoggedIn();
     if(isset($_GET['category'])){
         
       $post_category_id  = $_GET['category'];
@@ -26,7 +26,7 @@
 
 
 
-if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
+if(isset($_SESSION['username']) && is_admin()){
 
 
 
@@ -103,12 +103,12 @@ if(isset($_SESSION['username']) && is_admin($_SESSION['username'])){
                     by <a href="index.php"><?php echo $post_author ?></a>
                 </p>
                 <p><span class="glyphicon glyphicon-time"></span> <?php echo $post_date ?></p>
-                <hr>
+                <!-- <hr>
                 
                 <img class="img-responsive" src="images/<?php echo $post_image;?>" alt="">
-                <hr>
-                <p><?php echo $post_content ?></p>
-                <a class="btn btn-primary" href="#">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
+                <hr> -->
+                <p><?php echo substr($post_content, 0, 400); ?></p>
+                <a class="btn btn-primary" href="/post.php?p_id=<?php echo $post_id; ?>&user_id=<?php echo $post_user_id; ?>">Read More <span class="glyphicon glyphicon-chevron-right"></span></a>
 
                 <hr>
                 
