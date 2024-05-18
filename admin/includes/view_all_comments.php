@@ -103,9 +103,14 @@ confirmQuery($update_to_delete);
                       
 
   <?php 
-    
-    $query = "SELECT * FROM comments";
+    $currentUser = $_SESSION['username'];
 
+    $query = "
+        SELECT comments.* 
+        FROM comments 
+        JOIN posts ON comments.comment_post_id = posts.post_id 
+        WHERE posts.post_user = '{$currentUser}'
+    ";
     $select_comments = mysqli_query($connection,$query);
 //    $select_comments=  mysqli_query($connection,$query);
 

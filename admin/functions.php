@@ -88,7 +88,7 @@ function get_all_posts_user_comments(){
 }
 
 function get_all_user_categories(){
-    return query("SELECT * FROM categories WHERE user_id=".loggedInUserId()."");
+    return query("SELECT * FROM categories");
 }
 
 function get_all_user_published_posts(){

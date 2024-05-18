@@ -18,7 +18,6 @@
                
                <?php
 
-$post_user_id = isLoggedIn();
     if(isset($_GET['category'])){
         
       $post_category_id  = $_GET['category'];
@@ -32,14 +31,14 @@ if(isset($_SESSION['username']) && is_admin()){
 
 
 
-      $stmt1 = mysqli_prepare($connection, "SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ?");
+      $stmt1 = mysqli_prepare($connection, "SELECT post_id, user_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ?");
 
 
 
 
     } else {
 
-         $stmt2 = mysqli_prepare($connection, "SELECT post_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ? AND post_status = ? ");
+         $stmt2 = mysqli_prepare($connection, "SELECT post_id, user_id, post_title, post_author, post_date, post_image, post_content FROM posts WHERE post_category_id = ? AND post_status = ? ");
 
          $published = 'published';
 
@@ -52,7 +51,7 @@ if(isset($_SESSION['username']) && is_admin()){
 
         mysqli_stmt_execute($stmt1);
 
-        mysqli_stmt_bind_result($stmt1, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
+        mysqli_stmt_bind_result($stmt1, $post_id, $post_user_id, $post_title, $post_author, $post_date, $post_image, $post_content);
 
       $stmt = $stmt1;
 
@@ -64,7 +63,7 @@ if(isset($_SESSION['username']) && is_admin()){
 
         mysqli_stmt_execute($stmt2);
 
-        mysqli_stmt_bind_result($stmt2, $post_id, $post_title, $post_author, $post_date, $post_image, $post_content);
+        mysqli_stmt_bind_result($stmt2, $post_id, $post_user_id, $post_title, $post_author, $post_date, $post_image, $post_content);
 
      $stmt = $stmt2;
 

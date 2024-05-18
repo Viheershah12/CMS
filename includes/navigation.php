@@ -64,10 +64,10 @@
     if(isset($_SESSION['user_role'])) {
     
         if(isset($_GET['p_id']) && isset($_GET['user_id'])) {
-            if($_GET['user_id'] == loggedInUserId()){
+            $the_post_id = $_GET['p_id'];
+            $userId = $_GET['user_id'];
 
-                $the_post_id = $_GET['p_id'];
-        
+            if($userId == loggedInUserId()){
                 echo "<li><a href='/admin/posts.php?source=edit_post&p_id={$the_post_id}'>Edit Post</a></li>";
             }
         }

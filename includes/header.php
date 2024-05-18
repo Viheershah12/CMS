@@ -5,13 +5,27 @@
 
 <head>
 
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="description" content="Share your thoughts and get heard here at blogit.world">
+    <meta name="author" content="Blog IT">
+    <meta name="keywords" content="blog, world, cms, sharing, lifestyle, sports">
+
+    <!-- Social Media Meta Tags -->
+    <meta property="og:title" content="Blog IT">
+    <meta property="og:description" content="Share your thoughts and get heard here at blogit.world">
+    <!-- <meta property="og:image" content="URL to an image representing your site"> -->
+    <meta property="og:url" content="https://blogit.world">
+    <meta property="og:type" content="website">
+
+    <!-- <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Your CMS Site Title - Keyword Rich Title">
+    <meta name="twitter:description" content="A brief, keyword-rich description of your CMS site for Twitter.">
+    <meta name="twitter:image" content="URL to an image representing your site"> -->
 
     <title>Blog Home - Start Bootstrap Template</title>
+    
+    <!-- Google Adsense  -->
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-5417073288242268"
+    crossorigin="anonymous"></script>
 
     <!-- Bootstrap Core CSS -->
     <link href="/css/bootstrap.min.css" rel="stylesheet">
