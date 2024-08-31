@@ -117,6 +117,7 @@ $unapproved_comment_count = count_records(get_all_user_unapproved_posts_comments
                 <div class="row">
                     
                     <script type="text/javascript">
+      
       google.load("visualization", "1.1", {packages:["bar"]});
       google.setOnLoadCallback(drawChart);
       function drawChart() {

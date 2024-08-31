@@ -48,7 +48,7 @@ $(document).ready(function(){
 function loadUsersOnline() {
 
 
-	$.get("admin/functions.php?users_online", function(data){
+	$.get("../admin/functions.php?users_online", function(data){
 
 		$(".usersonline").text(data);
 
